@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import {LightsStar} from './components'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+    constructor(){
+        super()
+        this.state = {
+            foodList : [
+                {id:1,name:'黄焖鸡米饭',price:16},
+                {id:2,name:'河南羊肉烩面',price:18}
+            ]
+        }
+    }
+    render() {
+        return (
+            <div className="App">
+                <h1>Hello, React!123</h1>
+                <LightsStar foodList={this.state.foodList}/>
+            </div>
+        )
+    }
 }
-
-export default App;
