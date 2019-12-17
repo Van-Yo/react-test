@@ -11,11 +11,21 @@ export default class App extends Component {
             ]
         }
     }
+    addNewFood = (data)=>{
+        let newFoodItem = {
+            id:Math.random(),
+            name:data,
+            price:15
+        }
+        this.setState({
+            foodList:this.state.foodList.concat(newFoodItem)
+        })
+    }
     render() {
         return (
             <div className="App">
                 <h1>Hello, React!123</h1>
-                <LightsStar foodList={this.state.foodList}/>
+                <LightsStar foodList={this.state.foodList} clickToAddFood={this.addNewFood}/>
             </div>
         )
     }

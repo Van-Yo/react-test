@@ -19,8 +19,16 @@ export default class LightsStar extends Component {
             value : e.currentTarget.value
         })
     }
-    handerDataClick = () => {
-        console.log(this.state.value)
+    handerButtonClick = () => {
+        this.props.clickToAddFood(this.state.value)
+        this.setState({
+            value : ''
+        })
+    }
+    handerKeyUp = (e)=>{
+        if(this.state.value && e.keyCode === 13){
+            this.handerButtonClick()
+        }
     }
     render() {
         return (
@@ -29,17 +37,22 @@ export default class LightsStar extends Component {
                     {this.state.lightStatus ? '点赞💙' : '取消💘'}
                 </div>
                 <div>
-                    <input type="text" value={this.state.value} onChange={this.handerValueChange}/>
+                    <input 
+                        type="text" 
+                        value={this.state.value} 
+                        onChange={this.handerValueChange}
+                        onKeyUp={this.handerKeyUp}
+                    />
                 </div>
                 <div>
-                    <button onClick={this.handerDataClick}>点击输出</button>
+                    <button onClick={this.handerButtonClick}>点击输出</button>
                 </div>
                 <div>
                     <ul>
                         {
                             this.props.foodList.map(item => {
                                 return (
-                                    <Item name={item.name} key={item.id}/>
+                                    <Item name={item.name} price={item.price} key={item.id}/>
                                 )
                             })
                         }
